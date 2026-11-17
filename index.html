@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#F5F7FB">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="轨迹查询">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>轨迹查询 · iOS</title>
+<link rel="stylesheet" href="style.css?v=20261117h">
+</head>
+<body>
+<div class="app">
+  <div class="statusbar"><span>9:41</span><span class="sb-right">▮▮▮ ᯤ ▰</span></div>
+  <div class="island"></div>
+
+  <!-- 查询首页 -->
+  <section class="screen query" id="screen-query">
+    <header class="appbar">
+      <div class="logo">TR</div>
+      <div class="appbar-title">轨迹查询</div>
+      <button class="icon-btn" title="扫码"><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg></button>
+    </header>
+    <main class="scroll body-query">
+      <div class="welcome">
+        <h1>查一票，<br>或一批。</h1>
+        <p>输入跟踪单号，查看节点、延误、POD 与箱规。</p>
+      </div>
+      <div class="search-card">
+        <div class="search-row">
+          <svg class="search-ico" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <input id="noInput" value="FBA00DEMO01" placeholder="输入或粘贴跟踪单号" spellcheck="false">
+          <button class="clear" id="clearBtn">×</button>
+        </div>
+        <div class="search-actions"><button class="text-btn" id="batchBtn">批量查询</button><button class="primary" id="queryBtn">查询</button></div>
+      </div>
+      <div class="quick-grid">
+        <button class="quick"><span class="qico blue">⇩</span><b>批量查单</b><small>一次多票</small></button>
+        <button class="quick"><span class="qico green">▤</span><b>POD 文件</b><small>下载签收单</small></button>
+        <button class="quick"><span class="qico orange">▦</span><b>箱规导出</b><small>尺寸 / 重量</small></button>
+      </div>
+      <div class="overview">
+        <div><span>今日查询</span><b id="statTotal">12</b></div>
+        <div><span>延误</span><b class="red" id="statDelay">3</b></div>
+        <div><span>待跟进</span><b id="statPending">2</b></div>
+      </div>
+      <div class="section-head"><h2>最近查询</h2><button>全部</button></div>
+      <div class="recent-list" id="recentList">
+        <button class="recent" data-go="results"><span class="r-ico">▣</span><span class="r-main"><b>FBA00DEMO01</b><small>晚到港 · 11/17 更新</small></span><span class="r-state late">延误</span></button>
+        <button class="recent" data-go="detail"><span class="r-ico">▣</span><span class="r-main"><b>FBA00DEMO02</b><small>铁路待转运 · 11/17 更新</small></span><span class="r-state rail">在途</span></button>
+      </div>
+    </main>
+    <nav class="tabbar"><button class="on"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>查询</span></button><button><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span>记录</span></button><button><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-4 3.3-6 7-6s6.2 2 7 6"/></svg><span>我的</span></button></nav>
+  </section>
+
+  <!-- 查询结果 -->
+  <section class="screen results" id="screen-results">
+    <header class="appbar">
+      <button class="icon-btn back" data-back="query">‹</button>
+      <div class="appbar-title">查询结果 <span>3 票</span></div>
+      <button class="icon-btn"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+    </header>
+    <main class="scroll body-results">
+      <div class="filter-row" id="filterRow"></div>
+      <div class="result-tools">
+        <button id="allPodBtn">POD <b id="podTotal">0</b></button>
+        <button id="allImgBtn">过机图 <b id="imgTotal">0</b></button>
+        <button id="exportBtn">导出</button>
+      </div>
+      <div class="result-list" id="resultList"></div>
+    </main>
+  </section>
+
+  <!-- 详情 -->
+  <section class="screen detail" id="screen-detail">
+    <header class="appbar">
+      <button class="icon-btn back" data-back="results">‹</button>
+      <div class="appbar-title">轨迹详情</div>
+      <button class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8h.01M12 12v5"/></svg></button>
+    </header>
+    <main class="scroll body-detail" id="detailContent"></main>
+    <div class="sticky-action"><button class="outline" id="podBottom">POD</button><button class="primary" id="copyBottom">复制客户回复</button></div>
+  </section>
+</div>
+<div class="sheet-backdrop" id="batchSheet" hidden><div class="sheet"><div class="sheet-handle"></div><h3>批量查询</h3><p>每行一个单号，也支持逗号、空格分隔</p><textarea id="batchNumbers" spellcheck="false" placeholder="FBA0000000001&#10;FBA0000000002"></textarea><div class="sheet-actions"><button class="outline" id="cancelBatch">取消</button><button class="primary" id="doBatch">开始查询</button></div></div></div>
+<div class="sheet-backdrop" id="exportSheet" hidden><div class="sheet"><div class="sheet-handle"></div><h3>导出</h3><p>按当前查询结果生成表格，Excel 可直接打开</p><div class="option-list"><button data-export="summary"><b>轨迹概要</b><span>每票一行，含最新节点</span></button><button data-export="detail"><b>轨迹明细</b><span>全部节点，含操作人</span></button><button data-export="sla"><b>时效统计</b><span>状态、节点数、时效天数</span></button></div><div class="sheet-actions"><button class="outline" id="cancelExport">取消</button></div></div></div>
+<div class="sheet-backdrop" id="downloadSheet" hidden><div class="sheet"><div class="sheet-handle"></div><h3 id="downloadTitle">文件</h3><div class="dl-hero" id="dlHero"><div class="dl-ring"><svg viewBox="0 0 80 80"><circle class="ring-bg" cx="40" cy="40" r="30"></circle><circle class="ring-arc" id="ringArc" cx="40" cy="40" r="30"></circle></svg><b id="ringPct">0%</b><span class="dl-check">✓</span></div><div class="dl-hero-copy"><strong id="dlState">正在读取文件</strong><p id="downloadSub"></p></div></div><div class="download-progress" id="downloadProgress"><i></i></div><div class="download-list" id="downloadList"></div><div class="sheet-actions"><button class="outline" id="cancelDownload">关闭</button><button class="primary" id="downloadAllBtn">全部下载</button></div></div></div>
+<script src="app.js?v=20261117h"></script>
+</body>
+</html>
