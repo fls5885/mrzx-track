@@ -1,0 +1,130 @@
+*{box-sizing:border-box}
+:root{
+  --blue:#2563EB;--blue-soft:#EEF4FF;--ink:#0F172A;--muted:#64748B;--line:#E6EBF2;
+  --bg:#F5F7FB;--green:#059669;--amber:#B45309;--red:#DC2626;
+}
+html,body{height:100%;margin:0}
+body{background:#DDE5F0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.app{width:100%;max-width:430px;height:100%;margin:0 auto;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.statusbar{height:25px;flex:0 0 auto;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font:9px/1 -apple-system,"Segoe UI";color:#334155}
+.sb-right{font-size:8px;color:#64748B}
+.screen{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.screen[hidden]{display:none}
+.appbar{height:55px;flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:0 15px;background:#fff;border-bottom:1px solid #EEF2F7}
+.logo{width:30px;height:30px;border-radius:8px;background:#0F172A;color:#fff;display:grid;place-items:center;font:700 9px/1 Consolas,monospace;letter-spacing:.05em}
+.appbar-title{font-size:15px;font-weight:650;letter-spacing:-.02em;flex:1}
+.appbar-title span{font-size:10px;color:#94A3B8;font-weight:400;margin-left:5px}
+.icon-btn{width:30px;height:30px;display:grid;place-items:center;color:#475569;border-radius:7px}
+.icon-btn.back{font-size:26px;line-height:1;padding-bottom:3px;justify-content:flex-start;width:24px}
+.icon-btn:active{background:#F1F5F9}
+.scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.scroll::-webkit-scrollbar{width:0}
+
+/* query */
+.body-query{padding:0 15px 16px;background:var(--bg)}
+.welcome{padding:20px 2px 15px}
+.welcome h1{font-size:30px;line-height:1.15;letter-spacing:-.055em;margin:0 0 7px;font-weight:700;color:#0B1728}
+.welcome p{font-size:11px;line-height:1.6;color:#7C8CA0;margin:0;max-width:290px}
+.search-card{background:#fff;border-radius:14px;padding:13px;box-shadow:0 5px 18px rgba(36,64,110,.07);border:1px solid #EEF2F8}
+.search-row{height:38px;display:flex;align-items:center;gap:8px;background:#F7F9FC;border:1px solid #E8EDF4;border-radius:9px;padding:0 9px}
+.search-ico{width:16px;height:16px;color:#94A3B8;flex:0 0 auto}
+.search-row input{flex:1;min-width:0;border:0;outline:0;background:none;font:11px Consolas,"Cascadia Mono",monospace;color:#26364A;letter-spacing:-.01em}
+.clear{font-size:17px;color:#A3B1C2;width:22px;padding:0}
+.search-actions{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.text-btn{font-size:10.5px;color:var(--blue);padding:4px 0}
+.primary{height:36px;border-radius:8px;background:var(--blue);color:#fff;font-size:11px;font-weight:600;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;letter-spacing:.01em}
+.primary:active{background:#1D4ED8}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}
+.quick{background:#fff;border:1px solid #EEF2F8;border-radius:11px;padding:10px 6px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.quick:active{background:#F8FAFD}
+.qico{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:14px;margin-bottom:5px}
+.qico.blue{background:#EEF4FF;color:var(--blue)}.qico.green{background:#ECFDF5;color:var(--green)}.qico.orange{background:#FFF7ED;color:var(--amber)}
+.quick b{font-size:10.5px;font-weight:600;color:#26364A}
+.quick small{font-size:8.5px;color:#94A3B8;white-space:nowrap}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:18px 1px 9px}
+.section-head h2{font-size:12px;margin:0;font-weight:650;color:#1E2D3D}
+.section-head button{font-size:9px;color:#94A3B8}
+.recent-list{display:flex;flex-direction:column;gap:7px}
+.recent{width:100%;background:#fff;border:1px solid #EEF2F8;border-radius:10px;display:flex;align-items:center;gap:10px;padding:11px;text-align:left}
+.recent:active{background:#F8FAFD}
+.r-ico{width:30px;height:30px;background:#F1F5F9;border-radius:7px;display:grid;place-items:center;color:#7C8CA0;font-size:14px;flex:0 0 auto}
+.r-main{flex:1;min-width:0}
+.r-main b{display:block;font:600 11px/1.3 Consolas,"Cascadia Mono",monospace;color:#26364A;letter-spacing:-.02em}
+.r-main small{display:block;font-size:8.5px;color:#94A3B8;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-state{font-size:8.5px;font-weight:600;padding:3px 6px;border-radius:4px;white-space:nowrap}
+.r-state.late{background:#FEF2F2;color:#DC2626}
+.r-state.rail{background:#EFF6FF;color:#2563EB}
+.tabbar{height:62px;flex:0 0 auto;background:#fff;border-top:1px solid #E8EEF6;display:flex;align-items:flex-start;padding:7px 0 calc(6px + env(safe-area-inset-bottom))}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:#94A3B8;font-size:8.5px}
+.tabbar svg{width:19px;height:19px}
+.tabbar button.on{color:var(--blue);font-weight:600}
+.tabbar button.on svg{stroke-width:2}
+
+/* results */
+.results{background:var(--bg)}
+.body-results{padding:10px 14px 16px}
+.filter-row{display:flex;gap:7px;padding:2px 0 10px;overflow:auto;white-space:nowrap}
+.filter{height:27px;border:1px solid #E8EEF6;background:#fff;border-radius:14px;font-size:9.5px;color:#7C8CA0;padding:0 10px}
+.filter.on{background:#0F172A;color:#fff;border-color:#0F172A}
+.filter.alert{color:#DC2626;border-color:#F3D4D4;background:#FFF8F8}
+.result-list{display:flex;flex-direction:column;gap:9px}
+.ship-card{background:#fff;border:1px solid #E9EEF5;border-radius:12px;padding:13px;box-shadow:0 3px 12px rgba(35,60,100,.04);position:relative}
+.ship-card.alert{border-left:3px solid #DC2626}
+.ship-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.ship-no{font:600 13px/1.2 Consolas,"Cascadia Mono",monospace;letter-spacing:-.035em;color:#15263A}
+.ship-meta{font-size:8.5px;color:#94A3B8;margin-top:3px}
+.pill{font-size:8.5px;font-weight:600;padding:3px 7px;border-radius:4px;white-space:nowrap}
+.pill.late{background:#FEF2F2;color:#DC2626}.pill.rail{background:#EFF6FF;color:#2563EB}.pill.port{background:#ECFDF5;color:#059669}
+.progress{height:4px;display:flex;gap:3px;margin:15px 0 5px;position:relative}
+.progress i{flex:1;background:#EDF1F6;border-radius:2px}
+.progress i.done{background:#2563EB}
+.progress i.current{background:#93C5FD}
+.p-train{position:absolute;right:0;top:-19px;font-size:8px;color:#94A3B8;background:#F8FAFD;padding:2px 5px;border-radius:3px}
+.progress-labels{display:flex;justify-content:space-between;font-size:8px;color:#A0AEC0;margin-bottom:10px}
+.ship-latest{font-size:10px;line-height:1.55;color:#53657A;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ship-latest b{font-size:8.5px;color:#64748B;font-weight:600;margin-right:4px}
+.ship-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid #F1F5F9}
+.eta{font-size:8.5px;color:#94A3B8}.eta b{color:#334155;font-weight:600}
+.files{font-size:8.5px;color:#94A3B8}
+
+/* detail */
+.detail{background:var(--bg)}
+.body-detail{padding:0 14px 14px}
+.detail-head{background:#fff;border:1px solid #E9EEF5;border-radius:12px;padding:14px;margin-top:10px}
+.dh-top{display:flex;justify-content:space-between;align-items:flex-start}
+.delay-banner{margin-top:12px;border:1px solid #F5D8D8;background:#FFF7F7;border-radius:8px;padding:9px;display:flex;gap:8px;align-items:flex-start}
+.warn-ico{width:17px;height:17px;border-radius:50%;background:#DC2626;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:700;flex:0 0 auto}
+.delay-banner b{font-size:10px;color:#B91C1C;display:block}
+.delay-banner p{font-size:8.5px;line-height:1.5;color:#9B5B5B;margin:2px 0 0}
+.detail-actions{display:flex;gap:8px;margin-top:12px}
+.detail-actions button{flex:1;height:36px;border-radius:8px;font-size:10px}
+.outline{background:#fff;border:1px solid #DCE5EF;color:#3B4D61}
+.detail-tabs{display:flex;gap:18px;padding:13px 4px 0;border-bottom:1px solid #E6EBF2;margin-top:1px}
+.detail-tabs button{font-size:11px;color:#94A3B8;padding:0 0 9px;border-bottom:2px solid transparent}
+.detail-tabs button.on{color:#2563EB;border-bottom-color:#2563EB;font-weight:600}
+.timeline-card{background:#fff;border:1px solid #E9EEF5;border-radius:12px;padding:14px 14px 4px;margin-top:9px}
+.tl-item{position:relative;padding-left:18px;padding-bottom:16px}
+.tl-item:before{content:'';position:absolute;left:4px;top:4px;bottom:-4px;width:1px;background:#E9EEF5}
+.tl-item:last-child:before{display:none}
+.tl-dot{position:absolute;left:0;top:3px;width:9px;height:9px;border-radius:50%;background:#CBD5E1;border:2px solid #fff;box-shadow:0 0 0 1px #CBD5E1}
+.tl-item.current .tl-dot{background:#2563EB;box-shadow:0 0 0 1px #2563EB}
+.tl-item time{font-size:8.5px;color:#94A3B8;font-family:-apple-system,"Segoe UI"}
+.tl-item p{font-size:9.5px;line-height:1.55;color:#53657A;margin:3px 0 0}
+.mini-section{background:#fff;border:1px solid #E9EEF5;border-radius:12px;padding:13px;margin-top:9px}
+.mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.mini-head h3{font-size:10px;margin:0;font-weight:600;color:#334155}
+.mini-head button,.mini-head span{font-size:8.5px;color:#2563EB}
+.info-grid{display:grid;grid-template-columns:55px 1fr 55px 1fr;gap:7px 6px;font-size:9.5px;color:#94A3B8}
+.info-grid b{font-size:9.5px;color:#3B4D61;font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:8.5px}
+th{text-align:left;color:#94A3B8;font-weight:500;padding:4px 3px;border-bottom:1px solid #EEF2F7;white-space:nowrap}
+td{font-family:Consolas,monospace;color:#53657A;padding:5px 3px;border-bottom:1px solid #F4F7FA;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.file-row{display:flex;flex-wrap:wrap;gap:6px}
+.file{display:inline-flex;align-items:center;gap:5px;background:#F7F9FC;border:1px solid #E9EEF5;border-radius:6px;padding:7px 8px;font-size:8.5px;color:#53657A;text-decoration:none;max-width:100%}
+.detail-end{text-align:center;font-size:8px;color:#B0BCC9;padding:15px 0 4px}
+.sticky-action{flex:0 0 auto;background:#fff;border-top:1px solid #E7EDF5;padding:8px 14px calc(8px + env(safe-area-inset-bottom));display:flex;gap:8px}
+.sticky-action .outline{width:74px;height:38px;border-radius:8px;font-size:10px}
+.sticky-action .primary{flex:1;height:38px;font-size:11px}
