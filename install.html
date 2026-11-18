@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#F5F7FB">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>安装 · 跨境物流轨迹</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#F2F6FC;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;color:#0B1B2B}
@@ -16,57 +14,44 @@ body{display:flex;justify-content:center;padding:38px 20px calc(28px + env(safe-
 .brand b{font-size:14px;letter-spacing:-.02em}
 h1{font-size:32px;line-height:1.12;letter-spacing:-.05em;margin:0 0 9px;font-weight:700}
 .sub{font-size:13px;line-height:1.6;color:#71869A;margin:0 0 22px}
-.card{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.95);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 10px 30px rgba(38,86,142,.08);backdrop-filter:blur(20px)}
+.card{background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 10px 30px rgba(38,86,142,.08)}
 .card h2{font-size:15px;margin:0 0 5px;font-weight:650}
 .card p{font-size:11px;line-height:1.55;color:#71869A;margin:0 0 12px}
+.card.disabled{background:rgba(248,250,253,.78);border-color:#E5EBF3;box-shadow:none}
+.card.disabled h2{color:#5F7185}
+.card.disabled p{margin-bottom:0;color:#9AAABB}
+.disabled-tag{display:inline-block;font-size:9px;font-weight:600;color:#8A6A2A;background:#FFF4D8;border:1px solid #F0DCA8;border-radius:4px;padding:1px 5px;vertical-align:2px;margin-left:5px}
 .btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;height:42px;border-radius:12px;background:linear-gradient(180deg,#0A84FF,#0071E8);color:#fff;text-decoration:none;font-size:13px;font-weight:600;box-shadow:0 6px 16px rgba(0,122,255,.22)}
-.btn.ghost{background:#fff;color:#007AFF;border:1px solid rgba(180,205,230,.8);box-shadow:none}
+.btn.ghost{background:#fff;color:#007AFF;border:1px solid rgba(180,205,230,.8);box-shadow:none;margin-top:8px}
 .steps{margin:0;padding-left:18px;font-size:11px;line-height:1.9;color:#536A7F}
 .steps b{color:#0B1B2B}
 .note{text-align:center;font-size:10px;color:#9AAABB;margin-top:16px;line-height:1.6}
-.android-only,.ios-only{display:none}
-@media(max-width:430px){h1{font-size:30px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="brand"><div class="mark">TR</div><b>跨境物流 · 轨迹查询</b></div>
-  <h1>把查轨迹<br>装到手机。</h1>
-  <p class="sub">扫描同一个二维码，安卓下载安装包，iPhone 添加到主屏幕。</p>
+  <h1>把查轨迹<br>装到安卓手机。</h1>
+  <p class="sub">当前版本仅支持安卓。iPhone 暂不支持使用。</p>
 
-  <div class="card android-only" id="androidCard">
-    <h2>安卓 APK 压缩包</h2>
-    <p>直接下载 APK 安装。首次安装需要在系统里允许「安装未知应用」。如果 GitHub 打不开，用下面的 OSS 压缩包。</p>
-    <a class="btn" href="https://github.com/fls5885/mrzx-track/releases/download/v1.2/CrossBorderBrowser-Mobile.apk">下载安卓 APK</a><a class="btn ghost" href="https://fls5885-release.oss-cn-hangzhou.aliyuncs.com/mobile/CrossBorderBrowser-Android.zip" style="margin-top:8px">备用：OSS 压缩包</a>
-  </div>
-
-  <div class="card ios-only" id="iosCard">
-    <h2>iPhone 安装</h2>
-    <p>iPhone 不需要安装 APK，用 Safari 添加到主屏幕即可，使用体验接近 App。</p>
-    <ol class="steps">
-      <li>点击下方按钮，用 <b>Safari</b> 打开；</li>
-      <li>点底部分享按钮 <b>□↑</b>；</li>
-      <li>选择 <b>「添加到主屏幕」</b>。</li>
+  <div class="card">
+    <h2>安卓安装</h2>
+    <p>下载 APK 后直接安装。首次安装需要在系统里允许「安装未知应用」。</p>
+    <a class="btn" href="https://github.com/fls5885/mrzx-track/releases/download/v1.2/CrossBorderBrowser-Mobile.apk">下载安卓 APK</a>
+    <a class="btn ghost" href="https://fls5885-release.oss-cn-hangzhou.aliyuncs.com/mobile/CrossBorderBrowser-Android.zip">备用下载：OSS 压缩包</a>
+    <ol class="steps" style="margin-top:12px">
+      <li>下载 APK；</li>
+      <li>允许安装未知应用；</li>
+      <li>完成安装并打开。</li>
     </ol>
-    <a class="btn" href="index.html" style="margin-top:10px">在 Safari 打开</a>
   </div>
 
-  <div class="card" id="webCard">
-    <h2>先用网页版</h2>
-    <p>不安装也能直接查轨迹，功能和 App 一致。</p>
-    <a class="btn ghost" href="index.html">打开轨迹查询</a>
+  <div class="card disabled">
+    <h2>iPhone<span class="disabled-tag">暂不支持</span></h2>
+    <p>当前手机端仅支持安卓，iPhone 版本后续开放。请勿在 iPhone 上安装或添加到主屏幕。</p>
   </div>
 
-  <div class="note">单号数据只在本机浏览器使用，不上传服务器</div>
+  <div class="note">二维码和页面只包含安装入口，不含单号、客户、备注等本机数据。</div>
 </div>
-<script>
-(function(){
-  var ua=navigator.userAgent||'';
-  var android=/Android/i.test(ua);
-  var ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
-  document.getElementById('androidCard').style.display=android?'block':'none';
-  document.getElementById('iosCard').style.display=ios?'block':'none';
-})();
-</script>
 </body>
 </html>
